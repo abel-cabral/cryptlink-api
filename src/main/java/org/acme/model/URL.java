@@ -3,7 +3,10 @@ package org.acme.model;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
 public class URL extends PanacheMongoEntity {
+	private String id;
+	
 	private String url;
+	private String link_public;
 	private Boolean auto_delete;
 	private int numero_exibicao;
 
@@ -41,5 +44,21 @@ public class URL extends PanacheMongoEntity {
 
 	public void setNumero_exibicao(int numero_exibicao) {
 		this.numero_exibicao = numero_exibicao;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getLink_public() {
+		return link_public;
+	}
+
+	public void setLink_public(String link_public) {
+		this.link_public = link_public;
 	}
 }

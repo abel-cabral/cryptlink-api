@@ -1,6 +1,6 @@
 package org.acme.repository;
 
-import com.mongodb.client.MongoClient;
+import org.acme.Util.ShortIdGenerator;
 import org.acme.model.URL;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -8,16 +8,13 @@ import java.util.List;
 
 @ApplicationScoped
 public class URLRepository implements PanacheMongoRepository<URL> {
-    private final MongoClient mongoClient;
-
-    public URLRepository(MongoClient mongoClient) {
-        this.mongoClient = mongoClient;
-    }
-
-
     public URL persistURL(URL urlData) {
+        /* Poderia ter uma consulta para ver se o ShortId gerado já esta em uso, mas por ter um numero na casa de bilhoes de combinacoes e 
+            isso não gerar um grande impacto caso haja colisões, vou deixar sem um findAndUpdate */
+        String customId = ShortIdGenerator.generateShortId();
+        urlData.setId(customId);
+        urlData.setLink_public("http://encutador.com/" + customId);
         persistOrUpdate(urlData);
-        
         return urlData;
     }
 

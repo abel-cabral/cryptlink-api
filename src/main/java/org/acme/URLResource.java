@@ -36,7 +36,7 @@ public class URLResource {
 
         try {
             URL urlData = new URL(URLCrypto.encryptURL(url, senha), auto_delete, numero_exibicao);
-            urlRepository.persistOrUpdate(urlData);
+            urlRepository.persistURL(urlData);
             
             return Response.status(Response.Status.CREATED).entity(urlData).build();
         } catch (Exception e) {
