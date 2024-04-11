@@ -1,13 +1,16 @@
 package org.acme;
 
 import java.util.List;
-import org.acme.repository.URLRepository;
+
 import org.acme.Util.ResponseMessage;
 import org.acme.Util.URLCrypto;
 import org.acme.model.URL;
 import org.acme.model.dto.DecryptDto;
 import org.acme.model.dto.EncryptDto;
 import org.acme.model.dto.URLDTO;
+import org.acme.repository.URLRepository;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.GET;
@@ -29,6 +32,7 @@ public class URLResource {
     @POST
     @Path("/encrypt")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Encurta e/ou criptografa um link.")
     public Response create(@Valid EncryptDto decryptDto) {
         String url = decryptDto.getUrl();
         String senha = decryptDto.getSenha();
@@ -50,6 +54,7 @@ public class URLResource {
     @GET
     @Path("/decrypt/")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Recebe um encurtado e/ou criptografado e retorna o link original.")
     public Response encript_link(@Valid DecryptDto decryptDto) {
         try {
             URL urlData = urlRepository.findByEncryptedUrl(decryptDto.getId());
@@ -67,6 +72,7 @@ public class URLResource {
     @GET
     @Path("/decrypt/all")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Retorna uma lista com todos os links encurtados e/ou criptografados no BD.")
     public List<URL> decript_links() {
     	return urlRepository.listAll();
     }
