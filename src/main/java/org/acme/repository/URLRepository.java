@@ -1,8 +1,6 @@
 package org.acme.repository;
 
 import com.mongodb.client.MongoClient;
-
-import org.acme.Util.IDSequence;
 import org.acme.model.URL;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -16,10 +14,10 @@ public class URLRepository implements PanacheMongoRepository<URL> {
         this.mongoClient = mongoClient;
     }
 
-    public URL persistOrUpdateAndReturn(URL urlData) {
-        int nextId = IDSequence.getNextSequence(mongoClient, "encrypt-url", "URL");
-        urlData.setId(nextId);
+
+    public URL persistURL(URL urlData) {
         persistOrUpdate(urlData);
+        
         return urlData;
     }
 

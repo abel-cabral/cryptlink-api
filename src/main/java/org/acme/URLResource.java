@@ -35,11 +35,10 @@ public class URLResource {
         int numero_exibicao = decryptDto.getNumero_exibicao();
 
         try {
-            // Salva os demais dados no banco e gera o ID
-            URL urlData = new URL(null, auto_delete, numero_exibicao);
-            URL urlUpdated = urlRepository.persistOrUpdateAndReturn(urlData);
-
-            return Response.status(Response.Status.CREATED).entity(urlUpdated).build();
+            URL urlData = new URL(URLCrypto.encryptURL(url, senha), auto_delete, numero_exibicao);
+            urlRepository.persistOrUpdate(urlData);
+            
+            return Response.status(Response.Status.CREATED).entity(urlData).build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                        .entity(new ResponseMessage(false, e.getMessage()))
