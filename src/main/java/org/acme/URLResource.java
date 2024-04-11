@@ -16,7 +16,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/url")
+@Path("/")
 public class URLResource {
 	private URLRepository urlRepository;
 
@@ -47,21 +47,18 @@ public class URLResource {
     }
 
     @GET
-    @Path("/decrypt")
+    @Path("/decrypt/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response encript_link(DecryptDto decryptDto) {
-        URL urlData = urlRepository.findByEncriptedUrl(decryptDto.getUrl());
         try {
+            URL urlData = urlRepository.findByEncriptedUrl(decryptDto.getId());
             URLDTO url_dto = new URLDTO(urlData.getUrl());
             url_dto.setUrl(URLCrypto.decryptURL(urlData.getUrl(), decryptDto.getSenha()));
-
-
-
             return Response.status(Response.Status.FOUND).entity(url_dto)
             .build();
         } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                       .entity(new ResponseMessage(false, e.getMessage()))
+            return Response.status(Response.Status.NOT_FOUND)
+                       .entity(new ResponseMessage(false, "Link não encontrado"))
                        .build();
         }
     }

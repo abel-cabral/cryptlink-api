@@ -18,14 +18,16 @@ public class URLRepository implements PanacheMongoRepository<URL> {
         return urlData;
     }
 
-    public URL findByEncriptedUrl(String url){
-        URL urlData = find("url", url).firstResult();
+    public URL findByEncriptedUrl(String id){
+        //ObjectId objectId = new ObjectId(id);
+        URL urlData = find("_id", id).firstResult();
         
         // Caso a pesquisa seja do tipo auto-delete, já deleta o registro após o resgate. 
         if (urlData.getAuto_delete()) {
-            urlData.setNumero_exibicao(urlData.getNumero_exibicao() - 1);
-            if (urlData.getNumero_exibicao() < 0) {
-                delete("url", url);
+            int numero_exibicao = urlData.getNumero_exibicao() - 1;
+            urlData.setNumero_exibicao(numero_exibicao);
+            if (urlData.getNumero_exibicao() <= 0) {
+                delete(urlData);
             } else {
                 update(urlData);
             }

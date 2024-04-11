@@ -1,11 +1,11 @@
 package org.acme.model.dto;
 
 public class DecryptDto {
-    public String url;
+    public String id;
     public String senha;
 
-    public DecryptDto(String url, String senha) {
-        this.url = url;
+    public DecryptDto(String id, String senha) {
+        this.id = id;
         this.senha = senha;
     }
     public String getSenha() {
@@ -14,10 +14,10 @@ public class DecryptDto {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public String getUrl() {
-        return url;
+    public String getId() {
+        return id;
     }
-    public void setUrl(String url) {
-        this.url = url;
+    public void setId(String id) {
+        this.id = id;
     }
 }
