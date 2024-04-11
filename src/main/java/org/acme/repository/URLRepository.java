@@ -18,7 +18,7 @@ public class URLRepository implements PanacheMongoRepository<URL> {
         return urlData;
     }
 
-    public URL findByEncriptedUrl(String id){
+    public URL findByEncryptedUrl(String id){
         //ObjectId objectId = new ObjectId(id);
         URL urlData = find("_id", id).firstResult();
         

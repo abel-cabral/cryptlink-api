@@ -9,6 +9,7 @@ import org.acme.model.dto.DecryptDto;
 import org.acme.model.dto.EncryptDto;
 import org.acme.model.dto.URLDTO;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -28,7 +29,7 @@ public class URLResource {
     @POST
     @Path("/encrypt")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(EncryptDto decryptDto) {
+    public Response create(@Valid EncryptDto decryptDto) {
         String url = decryptDto.getUrl();
         String senha = decryptDto.getSenha();
         Boolean auto_delete = decryptDto.getAuto_delete();
@@ -49,9 +50,9 @@ public class URLResource {
     @GET
     @Path("/decrypt/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response encript_link(DecryptDto decryptDto) {
+    public Response encript_link(@Valid DecryptDto decryptDto) {
         try {
-            URL urlData = urlRepository.findByEncriptedUrl(decryptDto.getId());
+            URL urlData = urlRepository.findByEncryptedUrl(decryptDto.getId());
             URLDTO url_dto = new URLDTO(urlData.getUrl());
             url_dto.setUrl(URLCrypto.decryptURL(urlData.getUrl(), decryptDto.getSenha()));
             return Response.status(Response.Status.FOUND).entity(url_dto)

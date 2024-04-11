@@ -1,7 +1,16 @@
 package org.acme.model.dto;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
+import jakarta.validation.constraints.NotBlank;
+
 public class DecryptDto {
+    @NotBlank(message = "'id' não deve estar em branco.")
+    @BsonProperty("id")
     public String id;
+
+    @NotBlank(message = "'id' não deve estar em branco.")
+    @BsonProperty("senha")
     public String senha;
 
     public DecryptDto(String id, String senha) {
