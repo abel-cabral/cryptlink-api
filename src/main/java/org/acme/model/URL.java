@@ -1,13 +1,20 @@
 package org.acme.model;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
 public class URL extends PanacheMongoEntity {
+	@Schema(description = "Id do registro", example = "VvCZyb")
 	private String id;
-	
+
+	@Schema(description = "Link a ser encurtada/criptografada", example = "EwW1kx9Rvlj8fKzqR3FTsQ==")
 	private String url;
-	private String link_public;
+
+	@Schema(description = "Boleano para indicar se o link tem numero x de exibições")
 	private Boolean auto_delete;
+
+	@Schema(description = "Número de exibição", example = "0")
 	private int numero_exibicao;
 
 	public URL() {}
@@ -52,13 +59,5 @@ public class URL extends PanacheMongoEntity {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getLink_public() {
-		return link_public;
-	}
-
-	public void setLink_public(String link_public) {
-		this.link_public = link_public;
 	}
 }

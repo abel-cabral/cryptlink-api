@@ -3,6 +3,7 @@ package org.acme;
 import java.util.List;
 
 import org.acme.Util.ResponseMessage;
+import org.acme.Util.ShortIdGenerator;
 import org.acme.Util.URLCrypto;
 import org.acme.model.URL;
 import org.acme.model.dto.DecryptDto;
@@ -39,6 +40,11 @@ public class URLResource {
         Boolean auto_delete = decryptDto.getAuto_delete();
         int numero_exibicao = decryptDto.getNumero_exibicao();
 
+        // Verifica se a URL é valida
+        if (!ShortIdGenerator.isValidURL(url))
+            return Response.status(Response.Status.NOT_ACCEPTABLE).entity("URL inválida").build();
+
+
         try {
             URL urlData = new URL(URLCrypto.encryptURL(url, senha), auto_delete, numero_exibicao);
             urlRepository.persistURL(urlData);
@@ -57,7 +63,7 @@ public class URLResource {
     @Operation(summary = "Recebe um encurtado e/ou criptografado e retorna o link original.")
     public Response encript_link(@Valid DecryptDto decryptDto) {
         try {
-            URL urlData = urlRepository.findByEncryptedUrl(decryptDto.getId());
+            URL urlData = urlRepository.findByEncryptedUrl(decryptDto.getlink_publico());
             URLDTO url_dto = new URLDTO(urlData.getUrl());
             url_dto.setUrl(URLCrypto.decryptURL(urlData.getUrl(), decryptDto.getSenha()));
             return Response.status(Response.Status.FOUND).entity(url_dto)

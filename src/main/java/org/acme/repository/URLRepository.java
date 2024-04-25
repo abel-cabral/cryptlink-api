@@ -13,7 +13,6 @@ public class URLRepository implements PanacheMongoRepository<URL> {
             isso não gerar um grande impacto caso haja colisões, vou deixar sem um findAndUpdate */
         String customId = ShortIdGenerator.generateShortId();
         urlData.setId(customId);
-        urlData.setLink_public("http://encutador.com/" + customId);
         persistOrUpdate(urlData);
         return urlData;
     }

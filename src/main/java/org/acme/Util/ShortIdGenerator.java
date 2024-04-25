@@ -1,5 +1,7 @@
 package org.acme.Util;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 
 public class ShortIdGenerator {
@@ -15,5 +17,14 @@ public class ShortIdGenerator {
             shortId.append(CHARACTERS.charAt(randomIndex));
         }
         return shortId.toString();
+    }
+
+    public static boolean isValidURL(String urlString) {
+        try {
+            new URL(urlString);
+            return true;
+        } catch (MalformedURLException e) {
+            return false;
+        }
     }
 }
