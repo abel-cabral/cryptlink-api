@@ -1,4 +1,4 @@
-## Sobre o Projeto
+# Sobre o Projeto
 
 Este projeto consiste em uma API para encurtar links, fornecendo um backend que pode ser integrado a páginas web estáticas. A API permite aos usuários encurtarem URLs, gerando IDs que podem ser combinados com as URLs originais para criar links encurtados.
 
@@ -52,7 +52,7 @@ A ideia central da API é proporcionar uma forma de encurtar links que force os 
 
 Essa seção detalhada fornece uma visão clara do propósito e funcionamento do projeto.
 
-## Executando Localmente
+# Executando Localmente
 
 Este projeto utiliza o Quarkus, um framework Java Supersônico Subatômico.
 
@@ -61,7 +61,7 @@ Este projeto utiliza o Quarkus, um framework Java Supersônico Subatômico.
 Você pode executar o seu aplicativo em modo de desenvolvimento, que permite codificação ao vivo, usando:
 
 ```shell script
-./mvnw compile quarkus:dev
+./mvnw compile quarkus:dev ou quarkus dev
 ```
 OBSERVAÇÃO: O Quarkus agora vem com uma interface de desenvolvimento (Dev UI), disponível apenas em modo de desenvolvimento em http://localhost:8080/q/dev/.
 
@@ -107,7 +107,7 @@ REST Jackson (guia): Suporte à serialização Jackson para RESTEasy Reactive. E
 #### REST
 Inicie facilmente seus Serviços Web REST
 
-(Seção do guia relacionada...)[https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources]
+[Seção do guia relacionada...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
 
 
 Este README.md fornecerá uma visão geral clara do projeto, incluindo instruções sobre como executá-lo e links úteis para informações adicionais.
