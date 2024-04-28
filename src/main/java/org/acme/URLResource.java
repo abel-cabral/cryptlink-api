@@ -66,7 +66,7 @@ public class URLResource {
             URL urlData = urlRepository.findByEncryptedUrl(decryptDto.getlink_publico());
             URLDTO url_dto = new URLDTO(urlData.getUrl());
             url_dto.setUrl(URLCrypto.decryptURL(urlData.getUrl(), decryptDto.getSenha()));
-            return Response.status(Response.Status.FOUND).entity(url_dto)
+            return Response.status(Response.Status.ACCEPTED).entity(url_dto)
             .build();
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND)
