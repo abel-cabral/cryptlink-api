@@ -57,8 +57,8 @@ public class URLResource {
         }
     }
 
-    @GET
-    @Path("/decrypt/")
+    @POST
+    @Path("/decrypt")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Recebe um encurtado e/ou criptografado e retorna o link original.")
     public Response encript_link(@Valid DecryptDto decryptDto) {
