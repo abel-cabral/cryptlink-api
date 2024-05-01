@@ -3,7 +3,9 @@ package org.acme.model;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 
+@MongoEntity(collection="secret-links")
 public class URL extends PanacheMongoEntity {
 	@Schema(description = "Id do registro", example = "VvCZyb")
 	private String id;
