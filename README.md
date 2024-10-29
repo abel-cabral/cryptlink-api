@@ -63,7 +63,7 @@ Você pode executar o seu aplicativo em modo de desenvolvimento, que permite cod
 ```shell script
 ./mvnw compile quarkus:dev ou quarkus dev
 ```
-OBSERVAÇÃO: O Quarkus agora vem com uma interface de desenvolvimento (Dev UI), disponível apenas em modo de desenvolvimento em http://localhost:8080/q/dev/.
+OBSERVAÇÃO: O Quarkus agora vem com uma interface de desenvolvimento (Dev UI), disponível apenas em modo de desenvolvimento em http://localhost:8001/q/dev/.
 
 ###Empacotando e executando o aplicativo
 O aplicativo pode ser empacotado usando:
